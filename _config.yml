@@ -29,6 +29,7 @@ baseurl: /jasper/
 # permalink: /:title
 # permalink: /author/:username
 # permalink: /tag/:tag
+permalink: /:categories/:year/:month/:day/:title.html
 
 
 # gems and other configs
