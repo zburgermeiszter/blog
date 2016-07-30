@@ -1,7 +1,7 @@
 ---
 layout: post
 cover: 'assets/images/cover7.jpg'
-title: Yum
+title: Test
 tags: fables fiction
 subclass: 'post tag-test tag-content'
 categories: 'casper'
