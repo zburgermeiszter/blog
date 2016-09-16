@@ -23,11 +23,11 @@ short_url: 'zburgermeiszter.github.io/jasper/'
 google_analytics: UA-69281367-1
 disqus: username
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
-baseurl: /jasper/
+baseurl: /jasper
 
 # Permalinks
 # permalink: /:title
-permalink: /:title/
+permalink: /:title
 # permalink: /author/:username
 # permalink: /tag/:tag
 # permalink: /:categories/:year/:month/:day/:title.html
