@@ -18,6 +18,11 @@ class: 'post-template'
             <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         {% endif %}
     </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">{{ page.title }}</h1>
+        </div>
+    </div>
 </header>
 
 <main class="content" role="main">
@@ -25,20 +30,16 @@ class: 'post-template'
     <article class="{{ page.subclass }}">
 
         <header class="post-header">
-            <h1 class="post-title">{{ page.title }}</h1>
             <section class="post-meta">
-            <!-- <a href='{{ site.baseurl }}/{{ page.about }}'>{{ site.author }}</a> -->
-            <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
+                <a href="{{ site.baseurl }}/{{ page.about }}" class="author">{{ site.author }}</a>
+                <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
+                <span class="post-reading-time">{{ content | reading_time_as_i }} to read</span>
+
                 <!-- [[tags prefix=" on "]] -->
-                {% if page.tags.size > 0 %} 
-                on 
-                {% for tag in page.tags %}
-                    {% if forloop.index == page.tags.size %}
-                       <a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag | capitalize }}</a>
-                    {% else %}
-                       <a href='{{ site.baseurl }}/tag/{{ tag }}'>{{ tag | capitalize }}</a>,
-                    {% endif %}   
-                {% endfor %}
+                {% if page.tags.size > 0 %}
+                    {% for tag in page.tags %}
+                        <a href='{{ site.baseurl }}/tag/{{ tag }}'>#{{ tag }}</a>
+                    {% endfor %}
                 {% endif %}
             </section>
         </header>

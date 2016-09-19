@@ -18,3 +18,4 @@ gem "jekyll-watch"
 #,"~> 1.1"
 
 gem "jekyll-sass-converter","1.3.0"
+gem 'jekyll-time-to-read'
