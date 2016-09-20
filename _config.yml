@@ -45,6 +45,26 @@ exclude: [vendor]
 # Disqus comments as a per-post basis
 # ...
 
+# Front Matter defaults (http://jekyllrb.com/docs/configuration/#front-matter-defaults)
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      description: ''
+      class: 'page-template'
+      navigation: true
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      category: 'zburgermeiszter'
+      description: ''
+      class: 'post-template'
+      navigation: true
+      disqus: true
 
 # Settings for builing master branch with travis-ci
 # with jekyll-travis
