@@ -7,6 +7,9 @@ class: 'post-template'
 <!-- The comment above "< default" means - insert everything in this file into -->
     <!-- the [body] of the default.hbs template, which contains our header/footer. -->
 
+{% capture publication-date %}{{ page.date | date: '%Y-%m-%d' | date: '%s' }}{% endcapture %}
+{% capture last-modified-date %}{{ page.last-modified-date | date: '%Y-%m-%d' | date: '%s' }}{% endcapture %}
+
 <!-- Everything inside the #post tags pulls data from the post -->
 <!-- #post -->
 
@@ -32,6 +35,11 @@ class: 'post-template'
             <section class="post-meta">
                 <a href="{{ site.baseurl }}/{{ page.about }}" class="author">{{ site.author }}</a>
                 <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
+                {% if publication-date < last-modified-date %}
+                    <time class="post-date" datetime="{{ page.last-modified-date | date:'%Y-%m-%d' }}">
+                        Updated @ {{ page.last-modified-date | date_to_string }}
+                    </time>
+                {% endif %}
                 <span class="post-reading-time">{{ content | reading_time_as_i }} to read</span>
 
                 <!-- [[tags prefix=" on "]] -->
