@@ -70,7 +70,7 @@ namespace :site do
 
     sh "git checkout #{SOURCE_BRANCH}"
 
-    sh "git clone -b #{POSTS_BRANCH} https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git _posts"
+    sh "git clone -b #{POSTS_BRANCH} --single-branch https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git _posts"
 
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
