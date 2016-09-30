@@ -12,6 +12,7 @@ require 'yaml'
 CONFIG = YAML.load(File.read('_config.yml'))
 USERNAME = CONFIG["username"] || ENV['GIT_NAME']
 REPO = CONFIG["repo"] || "#{USERNAME}.github.io"
+POSTS_BRANCH = CONFIG['posts_branch'] || posts
 
 # Determine source and destination branch
 # User or organization: source -> master
@@ -68,6 +69,9 @@ namespace :site do
     check_destination
 
     sh "git checkout #{SOURCE_BRANCH}"
+
+    sh "git clone -b #{POSTS_BRANCH} https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git _posts"
+
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
     # Generate the site
