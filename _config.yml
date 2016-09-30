@@ -79,7 +79,7 @@ defaults:
 safe: false
 lsi: false
 username: zburgermeiszter
-repo: jasper
+repo: blog.burgermeiszter.com
 branch: master
 relative_source: ../source/
 destination: ../deploy/
