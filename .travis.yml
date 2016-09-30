@@ -16,9 +16,6 @@ script: bundle exec rake site:deploy --quiet #--trace
 # gem install travis
 # GH_TOKEN from https://github.com/settings/tokens
 # travis encrypt 'GIT_NAME="YOUR_USERNAME" GIT_EMAIL="YOUR_EMAIL" GH_TOKEN=YOUR_TOKEN'
-env:
-  global:
-    secure: "m9yy2+jTbANDbLJ8aWXjr9ELFx/Gp0lG6YtTkITFWfvh4RvV1RKHOIIv10IP4SOAJw54T6tpWQZcfoS8bs2A8BhczwVjH1IiCw5jpVtWr5XqV+44aMDxolufkSJLK/SdWLpDJbsKQkiJfXvBt8OhYyt1k+z0ICvsIs1kupidgBWGTIQgCNyX6u6C8HtrFW/iVwdRpXsdTH5r49KrF0ak+nzL2yAlvAVEWQu6GyzVIBOCItbadcP85vpDPDVwxleWCY1v6wmnq20jzY5BqeIkdaUrkLqUVlPLkA3oDg3thtuQZWWZDMl3MnrU6tmzvvhIIHxQNK6dK/OZH0dTzcZlkYMBLJbvlU2548Gs0VcHVtv31u3BaIZF15WhDTFMyObr5RHp+JnmrA2n+YXk81fQF7xvROGnGbEPGeh2vhj5MqOH47H+d60cNVrCaVUCv4z0SJrgJa77zwQFMvD2oAt7A5DuboXoELUFPtn2kjaSynAR+ET3Kq6+5ig1vSk3Qbz+mAb7ND2OZOgtFumB/wCSMeBJngugmHjasfPlB6wVxu/6pv5LUZryGLDJRYkJIGtFXtIKWv4uGKKnwF12LW4EqgYHqt9fHOOUAI7dqaCxHzT2g42YqhScHXpAckSF2RPsII3FKErPUQ/GlkI2RkiETtPtT4ZVeropvbqqohoR9KQ="
 branches:
   only:
     - master
