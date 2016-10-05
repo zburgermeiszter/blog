@@ -14,6 +14,9 @@ USERNAME = CONFIG["username"] || ENV['GIT_NAME']
 REPO = CONFIG["repo"] || "#{USERNAME}.github.io"
 POSTS_BRANCH = CONFIG['posts_branch'] || posts
 
+# For local serving
+HOST = ENV['JEKYLL_HOST'] || "127.0.0.1"
+
 # Determine source and destination branch
 # User or organization: source -> master
 # Project: master -> gh-pages
@@ -58,7 +61,7 @@ namespace :site do
   desc "Generate the site, serve locally and watch for changes"
   task :watch do
     check_source
-    sh "bundle exec jekyll serve --watch"
+    sh "bundle exec jekyll serve --watch --host #{HOST}"
   end
 
   desc "Generate the site and push changes to remote origin"
