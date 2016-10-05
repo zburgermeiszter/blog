@@ -26,9 +26,19 @@ else
   DESTINATION_BRANCH = "gh-pages"
 end
 
+def check_source
+  puts "Refresh origin"
+  sh "git remote rm origin"
+  sh "git remote add --fetch origin https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git"
+
+  unless Dir.exist? "_posts"
+      sh "git worktree add -f _posts #{POSTS_BRANCH}"
+  end
+end
+
 def check_destination
   unless Dir.exist? CONFIG["destination"]
-    sh "git clone https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
+    sh "git clone --single-branch -b #{DESTINATION_BRANCH} https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
   end
 end
 
@@ -47,6 +57,7 @@ namespace :site do
 
   desc "Generate the site, serve locally and watch for changes"
   task :watch do
+    check_source
     sh "bundle exec jekyll serve --watch"
   end
 
@@ -65,12 +76,13 @@ namespace :site do
       sh "git config --global push.default simple"
     end
 
+    # Check source
+    check_source
+
     # Make sure destination folder exists as git repo
     check_destination
 
     sh "git checkout #{SOURCE_BRANCH}"
-
-    sh "git clone -b #{POSTS_BRANCH} --single-branch https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git _posts"
 
     Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
