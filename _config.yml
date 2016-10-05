@@ -83,7 +83,7 @@ repo: blog.burgermeiszter.com
 branch: master
 posts_branch: posts
 relative_source: ../source/
-destination: ../deploy/
+destination: _site
 production_url:  https://blog.burgermeiszter.com/
 source_url:      https://github.com/zburgermeiszter/blog/
 

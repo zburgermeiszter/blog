@@ -37,24 +37,23 @@ def check_source
   unless Dir.exist? "_posts"
       sh "git worktree add -f _posts #{POSTS_BRANCH}"
   end
-end
 
-def check_destination
-  unless Dir.exist? CONFIG["destination"]
-    sh "git clone --single-branch -b #{DESTINATION_BRANCH} https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git #{CONFIG["destination"]}"
+  unless Dir.exist? "#{CONFIG["destination"]}"
+      sh "mkdir -p #{CONFIG["destination"]} && git worktree add -f #{CONFIG["destination"]} #{DESTINATION_BRANCH}"
   end
+
 end
 
 namespace :site do
   desc "Generate the site"
   task :build do
-    check_destination
+    check_source
     sh "bundle exec jekyll build"
   end
 
   desc "Generate the site and serve locally"
   task :serve do
-    check_destination
+    check_source
     sh "bundle exec jekyll serve"
   end
 
@@ -82,12 +81,7 @@ namespace :site do
     # Check source
     check_source
 
-    # Make sure destination folder exists as git repo
-    check_destination
-
     sh "git checkout #{SOURCE_BRANCH}"
-
-    Dir.chdir(CONFIG["destination"]) { sh "git checkout #{DESTINATION_BRANCH}" }
 
     # Generate the site
     sh "bundle exec jekyll build"
