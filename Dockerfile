@@ -1,22 +1,30 @@
-FROM alpine:3.4
+FROM zburgermeiszter/usermode:alpine-3.4
 
 MAINTAINER Zoltan Burgermeiszter <zoltan@burgermeiszter.com>
+
+USER root
 
 # Skip installing gem documentation
 RUN echo 'gem: --no-rdoc --no-ri' >> "$HOME/.gemrc"
 
-RUN apk add --update --no-cache build-base ruby-dev libffi-dev ruby-bundler ca-certificates libxml2 zlib-dev && \
+RUN apk add --update --no-cache build-base ruby-dev libffi-dev ruby-bundler ca-certificates libxml2 zlib-dev \
+    git && \
     gem install io-console && \
     rm /var/cache/apk/* && \
     rm -rf /usr/share/ri
 
 RUN mkdir /jekyll
-ADD Gemfile /jekyll
 WORKDIR /jekyll
+VOLUME /jekyll
 
+ADD Gemfile Gemfile.lock /jekyll/
 RUN bundle install
 
-ADD . /jekyll
+RUN chown -R 1000:1000 /jekyll
 
-ENTRYPOINT ["bundle","exec","jekyll"]
-CMD ["serve","--verbose","--host","0.0.0.0"]
+USER user
+
+ENV JEKYLL_HOST="0.0.0.0"
+
+ENTRYPOINT ["bundle","exec","rake"]
+CMD ["site:watch"]
