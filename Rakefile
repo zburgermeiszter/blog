@@ -31,8 +31,8 @@ end
 
 def check_source
   puts "Refresh origin"
-  sh "git remote rm origin"
-  sh "git remote add --fetch origin https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git"
+  #sh "git remote rm origin"
+  #sh "git remote add --fetch origin https://$GIT_NAME:$GH_TOKEN@github.com/#{USERNAME}/#{REPO}.git"
   sh "current=`git rev-parse --abbrev-ref HEAD`; "\
      "for remote in `git branch -r | grep -v /HEAD`; do git checkout --track $remote ; done; "\
      "git checkout $current"
