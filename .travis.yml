@@ -1,15 +1,20 @@
-sudo: false
+sudo: required
+
 language: ruby
-cache: bundler
-rvm:
-#- 2.1
-- 2.1.1
 
-install:
-  # Install Jekyll and dependencies
-  - bundle install
+services:
+  - docker
 
-script: bundle exec rake site:deploy --quiet #--trace
+script: >
+  docker run
+  -it
+  -v $PWD:/jekyll
+  -e TRAVIS=true
+  -e GIT_NAME="$GIT_NAME"
+  -e GIT_EMAIL="$GIT_EMAIL"
+  -e GH_TOKEN="$GH_TOKEN"
+  zburgermeiszter/blog-build:latest
+  site:deploy
 
 # Generate your secure token with the travis gem:
 # get Github token from your Travis CI profile page
