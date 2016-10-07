@@ -16,12 +16,3 @@ script: >
   zburgermeiszter/blog-build:latest
   site:deploy
 
-# Generate your secure token with the travis gem:
-# get Github token from your Travis CI profile page
-# gem install travis
-# GH_TOKEN from https://github.com/settings/tokens
-# travis encrypt 'GIT_NAME="YOUR_USERNAME" GIT_EMAIL="YOUR_EMAIL" GH_TOKEN=YOUR_TOKEN'
-branches:
-  only:
-    - master
-
