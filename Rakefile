@@ -12,7 +12,8 @@ require 'yaml'
 CONFIG = YAML.load(File.read('_config.yml'))
 USERNAME = CONFIG["username"] || ENV['GIT_NAME']
 REPO = CONFIG["repo"] || "#{USERNAME}.github.io"
-POSTS_BRANCH = CONFIG['posts_branch'] || posts
+POSTS_BRANCH = CONFIG['posts_branch'] || "posts"
+PAGES_BRANCH = CONFIG['pages_branch'] || "pages"
 
 # For local serving
 HOST = ENV['JEKYLL_HOST'] || "127.0.0.1"
@@ -39,6 +40,10 @@ def check_source
 
   unless Dir.exist? "_posts"
       sh "git worktree add -f _posts #{POSTS_BRANCH}"
+  end
+
+  unless Dir.exist? "_pages"
+    sh "git worktree add -f _pages #{PAGES_BRANCH}"
   end
 
   unless Dir.exist? "#{CONFIG["destination"]}"

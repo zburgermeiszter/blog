@@ -3,6 +3,8 @@
 
 # Jekyll build
 /_site/
+/_pages/
+/_posts/
 .jekyll-metadata
 #Gemfile.lock
 
