@@ -20,7 +20,7 @@ url: 'https://blog.burgermeiszter.com'
 image: 'assets/images/casper.png'
 
 short_url: 'blog.burgermeiszter.com'
-google_analytics: UA-69281367-1
+google_analytics: UA-70076814-2
 disqus: burgermeisztercom
 # edit baseurl to simply '/' if using as your personal page (instead of a project page)
 baseurl: 
