@@ -35,11 +35,13 @@ class: 'post-template'
             <section class="post-meta">
                 <a href="{{ site.baseurl }}/{{ page.about }}" class="author">{{ site.author }}</a>
                 <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
+                {% comment %}
                 {% if publication-date < last-modified-date %}
                     <time class="post-date" datetime="{{ page.last-modified-date | date:'%Y-%m-%d' }}">
                         Updated @ {{ page.last-modified-date | date_to_string }}
                     </time>
                 {% endif %}
+                {% endcomment %}
                 <span class="post-reading-time">{{ content | reading_time_as_i }} to read</span>
 
                 <!-- [[tags prefix=" on "]] -->

@@ -1,4 +1,4 @@
-    <link rel="canonical" href="{{ site.baseurl }}/" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
     <meta name="referrer" content="origin" />
 
     {% if paginator.previous_page %}
@@ -16,26 +16,46 @@
 
     <meta property="og:site_name" content="{{ site.name }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ site.name }}" />
-    <meta property="og:description" content="{{ site.description }}" />
-    <meta property="og:url" content="{{ site.baseurl }}/" />
-    <meta property="og:image" content="{{ site.baseurl }}/assets/images/cover1.jpg" />
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}" />
+    <meta property="og:description" content="{% if page.layout != 'default' %}{{ page.content | strip_html | truncatewords: 26 }}{% else %}{{ site.name }} - {{ site.description }}{% endif %}" />
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+    {% if page.cover %}
+    <meta property="og:image" content="{{ site.url }}/{{ page.cover }}" />
+    {% endif %}
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ site.name }}" />
-    <meta name="twitter:description" content="{{ site.description }}" />
-    <meta name="twitter:url" content="{{ site.baseurl }}/" />
-    <meta name="twitter:image:src" content="{{ site.baseurl }}/assets/images/cover1.jpg" />
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}" />
+    <meta name="twitter:description" content="{% if page.layout != 'default' %}{{ page.content | strip_html | truncatewords: 26 }}{% else %}{{ site.name }} - {{ site.description }}{% endif %}" />
+    <meta name="twitter:url" content="{{ site.url }}{{ page.url }}" />
+    {% if page.cover %}
+    <meta name="twitter:image:src" content="{{ site.url }}/{{ page.cover }}" />
+    {% endif %}
 
     <script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "Website",
-    "publisher": "{{ site.name}}",
-    "url": "{{ site.baseurl }}/",
-    "image": "{{ site.baseurl }}/assets/images/covers/server-room.jpg",
-    "description": "{{ site.description }}"
-}
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": "{{ site.url }}{{ page.url }}",
+        "author": {
+            "@type": "Person",
+            "name": "{{ site.author }}"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "{{ site.name }}"
+        },
+        "datePublished": "{{ page.date | date: '%a %B %d, %Y' }}",
+        "headline": "{% if page.title %}{{ page.title }}{% else %}{{ site.name }}{% endif %}",
+        "description": "{% if page.layout != 'default' %}{{ page.content | strip_html | truncatewords: 26 }}{% else %}{{ site.name }} - {{ site.description }}{% endif %}"
+        {% if page.cover %}
+        ,"image": {
+            "@type": "imageObject",
+            "url": "{{ site.url }}/{{ page.cover }}",
+            "height": "600",
+            "width": "800"
+        }
+        {% endif %}
+    }
     </script>
 
     <meta name="generator" content="Jekyll 3.0.0" />
