@@ -1,0 +1,10 @@
+default: zburgermeiszter
+
+zburgermeiszter:
+  avatar: assets/images/casper.png
+  bio: Web developer
+  location: Nottingham, UK
+  name: Zoltan Burgermeiszter
+  nickname: zburgermeiszter
+  short_url: blog.burgermeiszter.com
+  url: https://blog.burgermeiszter.com

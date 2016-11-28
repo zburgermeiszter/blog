@@ -11,6 +11,8 @@ name: 'Finding The Way Home'
 description: "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 
 # Author's info
+author_dir: author
+
 author: 'Casper McFadden'
 # edit 'categories' in the front matter of every post to match this username
 nickname: casper
@@ -61,7 +63,7 @@ defaults:
       path: ""
       type: "posts"
     values:
-      category: 'zburgermeiszter'
+      author: zburgermeiszter
       description: ''
       class: 'post-template'
       navigation: true
