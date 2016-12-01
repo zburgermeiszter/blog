@@ -61,6 +61,12 @@ class: 'post-template'
 
         </section>
 
+        <section class="improve-content">
+            <a href="{{ site.source_url }}blob/{{ site.posts_branch }}/{{ page.path | remove: '_posts/' }}">Improve this post</a>
+            |
+            <a href="{{ site.source_url }}commits/{{ site.posts_branch }}/{{ page.path | remove: '_posts/' }}">View history</a>
+        </section>
+
         <footer class="post-footer">
 
             <!-- Everything inside the #author tags pulls data from the author -->
