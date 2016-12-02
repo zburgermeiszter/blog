@@ -1,6 +1,0 @@
-blog:
-  build: .
-  volumes:
-    - ./:/jekyll
-  ports:
-    - 4000:4000
