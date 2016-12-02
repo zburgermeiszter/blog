@@ -1,0 +1,19 @@
+{% assign format_parsed = site.social.twitter.format | replace: '@title', post.title | replace: '@url', '' | replace: '@tags', '' | size %}
+{% assign post_tags = '' %}
+{% assign space_left = site.social.twitter.max_length | minus: format_parsed.size %}
+
+{% if site.social.twitter.format contains '@url' %}
+    {% assign space_left = space_left | minus: site.social.twitter.url_length %}
+{% endif %}
+
+{% for tag in post.tags %}
+    {% capture new_tag %} #{{ tag }}{% endcapture %}
+    {% assign new_space_left = space_left | minus: new_tag.size %}
+
+    {% if new_space_left > 0 %}
+        {% assign post_tags = post_tags | append: new_tag %}
+        {% assign space_left = space_left | minus: new_tag.size %}
+    {% endif %}
+{% endfor %}
+
+{% assign post_title = site.social.twitter.format | replace: '@title', post.title | replace: '@tags', post_tags | replace: '@url', post.url %}
