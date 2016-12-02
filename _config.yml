@@ -93,6 +93,7 @@ source_url:      https://github.com/zburgermeiszter/blog.burgermeiszter.com/
 exclude:
   - README.md
   - Dockerfile
+  - docker-compose.yml
   - Rakefile
   - Gemfile
   - Gemfile.lock
