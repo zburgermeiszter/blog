@@ -36,6 +36,8 @@ permalink: /:title
 
 # social config
 social:
+  addthis:
+    pubid: ra-56a295cc05484c4c
   twitter:
     format: "@title: @url@tags"
     url_length: 22
