@@ -1,0 +1,26 @@
+<div class="author-social">
+    {% if author.social.twitter %}
+    <a href="https://twitter.com/{{ author.social.twitter }}" title="Twitter" target="_blank"><i class="fa fa-twitter fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.github %}
+    <a href="https://github.com/{{ author.social.github }}" title="Github" target="_blank"><i class="fa fa-github fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.gitlab %}
+    <a href="https://gitlab.com/{{ author.social.gitlab }}" title="Gitlab" target="_blank"><i class="fa fa-gitlab fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.dockerhub %}
+    <a href="https://hub.docker.com/u/{{ author.social.dockerhub }}" title="Docker Hub" target="_blank"><i class="fa fa-docker fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.linkedin %}
+    <a href="https://www.linkedin.com/in/{{ author.social.linkedin }}" title="LinkedIn" target="_blank"><i class="fa fa-linkedin fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.googleplus %}
+    <a href="https://plus.google.com/{{ author.social.googleplus }}" title="Google+" target="_blank"><i class="fa fa-google-plus-official fa-1x"></i></a>
+    {% endif %}
+    {% if author.social.medium %}
+    <a href="https://medium.com/@{{ author.social.medium }}" title="Medium" target="_blank"><i class="fa fa-medium fa-1x"></i></a>
+    {% endif %}
+
+    <a href="/feed.xml" title="RSS Feed"><i class="fa fa-rss fa-1x"></i></a>
+
+</div>

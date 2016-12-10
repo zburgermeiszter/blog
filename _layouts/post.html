@@ -90,6 +90,7 @@ class: 'post-template'
                     {% if author.location %}<span class="author-location icon-location"> {{ author.location }}</span>{% endif %}
                     {% if author.url %}<span class="author-link icon-link"><a href="{{ author.url }}"> {{ author.short_url }}</a></span>{% endif %}
                 </div>
+                {% include post_author_social.html %}
             </section>
 
             <!-- /author  -->
