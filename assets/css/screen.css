@@ -1161,6 +1161,22 @@ body:not(.post-template) .post-title {
     color: #111;
 }
 
+.author-social {
+    margin-bottom: 1.6rem;
+}
+
+.author-social a {
+    font-size: 2.8rem;
+    display: inline-block;
+    margin: 0 1rem 0 0;
+    color: #BBC7CC;
+    text-decoration: none;
+}
+
+.author-social a:hover {
+    color: #111;
+}
+
 /* Create some space to the right for the share links */
 .post-footer .author {
     margin-right: 180px;
@@ -1187,9 +1203,9 @@ body:not(.post-template) .post-title {
 }
 
 .post-footer .share a {
-    font-size: 1.8rem;
+    font-size: 2.8rem;
     display: inline-block;
-    margin: 1rem 1.6rem 1.6rem 0;
+    margin: 1rem 0.6rem 1.6rem 0;
     color: #BBC7CC;
     text-decoration: none;
 }
