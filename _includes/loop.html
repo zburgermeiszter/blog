@@ -15,6 +15,7 @@
 
     <!-- This is the post loop - each post will be output using this markup -->
     {% for post in paginator.posts %}
+    {% include pull_author.html page=post %}
     <article class="post">
         <header class="post-header">
             <h2 class="post-title"><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
@@ -23,9 +24,8 @@
             <p>{{ post.content | strip_html | truncatewords: 26 }} <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">&raquo;</a></p>
         </section>
         <footer class="post-meta">
-            {% if site.image %}<img class="author-thumb" src="{{ site.baseurl }}/{{ site.image }}" alt="{{ site.author }}" nopin="nopin" />{% endif %}
             <!-- author -->
-            <a href='{{ site.baseurl }}/author/{{ site.nickname }}'>{{ site.author }}</a>
+            <a href='{{ site.baseurl }}/author/{{ author.nickname }}'>{{ author.name }}</a>
             <time class="post-date" datetime="{{ post.date | date:'%Y-%m-%d' }}">{{ post.date | date_to_string }}</time>
             <span class="post-reading-time">{{ post.content | reading_time_as_i }} to read</span>
             <!-- [[tags prefix=" on "]] -->

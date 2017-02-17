@@ -35,7 +35,7 @@ class: 'post-template'
 
         <header class="post-header">
             <section class="post-meta">
-                <a href="{{ site.baseurl }}/{{ page.about }}" class="author">{{ author.name }}</a>
+                <a href="{{ site.baseurl }}/author/{{ author.nickname }}" class="author">{{ author.name }}</a>
                 <time class="post-date" datetime="{{ page.date | date:'%Y-%m-%d' }}">{{ page.date | date_to_string }}</time>
                 {% comment %}
                 {% if publication-date < last-modified-date %}
@@ -74,7 +74,7 @@ class: 'post-template'
 
             {% if author.avatar %}
             <figure class="author-image">
-                <a class="img" href="{{ site.baseurl }}/author/{{ site.nickname }}" style="background-image: url({{ site.baseurl }}/{{ author.avatar }})"><span class="hidden">{{ author.name }}'s Picture</span></a>
+                <a class="img" href="{{ site.baseurl }}/author/{{ author.nickname }}" style="background-image: url({{ site.baseurl }}/{{ author.avatar }})"><span class="hidden">{{ author.name }}'s Picture</span></a>
             </figure>
             {% endif %}
 

@@ -75,9 +75,8 @@ current: author
                 <p>{{ post.content | strip_html | truncatewords: 26 }} <a class="read-more" href="{{ site.baseurl }}{{ post.url }}">&raquo;</a></p>
             </section>
             <footer class="post-meta">
-                {% if author.avatar %}<img class="author-thumb" src="{{ site.baseurl }}/{{ author.avatar }}" alt="{{ author.name }}" nopin="nopin" />{% endif %}
                 <!-- author -->
-                <a href='{{ site.baseurl }}/author/{{ site.nickname }}'>{{ author.name }}</a>
+                <a href='{{ site.baseurl }}/author/{{ author.nickname }}'>{{ author.name }}</a>
                 <time class="post-date" datetime="{{ post.date | date:'%Y-%m-%d' }}">{{ post.date | date_to_string }}</time>
                 <span class="post-reading-time">{{ post.content | reading_time_as_i }} to read</span>
                 <!-- [[tags prefix=" on "]] -->
