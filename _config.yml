@@ -43,10 +43,21 @@ social:
     url_length: 22
     max_length: 140
 
+compress_html:
+  clippings: all
+  comments: all
+  endings: [html, head, body, li, dt, dd, rt, rp, optgroup, option, colgroup, caption, thead, tbody, tfoot, tr, td, th]
+  profile: false
+  blanklines: false
+  ignore:
+    envs: []
+
 # gems and other configs
 gems: [jekyll-paginate, jekyll-time-to-read]
 exclude: [vendor]
 include: ["_pages"]
+sass:
+  style: compressed
 
 # Additional settings available on the front-matter
 # Site logo in the index.html (as in demo.ghost.io)
@@ -66,6 +77,7 @@ defaults:
       description: ''
       class: 'page-template'
       navigation: true
+      cover: 'assets/images/covers/server-room.jpg'
   -
     scope:
       path: ""
@@ -75,7 +87,8 @@ defaults:
       description: ''
       class: 'post-template'
       navigation: true
-      disqus: true
+      is_post: true
+      cover: 'assets/images/covers/server-room.jpg'
 
 # Settings for builing master branch with travis-ci
 # with jekyll-travis

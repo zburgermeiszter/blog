@@ -1,17 +1,32 @@
 <section class="subscribe-form">
     <!-- Begin MailChimp Signup Form -->
     <div id="mc_embed_signup">
-        <form action="//burgermeiszter.us12.list-manage.com/subscribe/post?u=f0cf93d2ab532db34cdf0ade8&amp;id=e791f1652a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        <form action-xhr="//burgermeiszter.us12.list-manage.com/subscribe/post?u=f0cf93d2ab532db34cdf0ade8&amp;id=e791f1652a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate -amp-form user-invalid" target="_top">
             <div id="mc_embed_signup_scroll">
-                <label for="mce-EMAIL">Get free email updates</label>
-                <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
-                <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_f0cf93d2ab532db34cdf0ade8_e791f1652a" tabindex="-1" value=""></div>
-                <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
-                <div id="mce-responses" class="clear">
-                    <div class="response" id="mce-error-response" style="display:none"></div>
-                    <div class="response" id="mce-success-response" style="display:none"></div>
+                <h3>Subscribe for updates</h3>
+                <p>Get email notification about the latest blog posts.</p>
+
+                <div class="mc-field-group">
+                    <input type="email" value="" name="EMAIL" class="required email user-invalid typeMismatch" id="mce-EMAIL" required="" placeholder="you@awesome.com">
+                    <input type="submit" value="Subscribe to the newsletter" name="subscribe" id="mc-embedded-subscribe" class="button user-valid valid">
                 </div>
+
+                <input type="hidden" name="b_faf9cac71b7884aa7e5578d37_24ca84123b" tabindex="-1" value="" class="user-valid valid">
+
+                <div class="clear security-text-wrapper">
+                    <p id="security-text">
+                        <i class="fa fa-lock"></i>
+                        I won't send you spam, or share your information. You can unsubscribe at any time.
+                    </p>
+                </div>
+            </div>
+
+            <div submit-error="">
+                <template type="amp-mustache">
+                    <div class="mailchimp-success">
+                        Thanks for subscribing. Please check your email to confirm.
+                    </div>
+                </template>
             </div>
         </form>
     </div>

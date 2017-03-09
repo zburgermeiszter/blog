@@ -1,8 +1,10 @@
 ---
 layout: compress
 ---
+{% include pull_author.html %}
+
 <!DOCTYPE html>
-<html>
+<html amp lang="en">
 <head>
     <!-- [[! Document Settings ]] -->
     <meta charset="utf-8" />
@@ -13,16 +15,34 @@ layout: compress
     <meta name="description" content="{% if page.layout != 'default' %}{{ page.content | strip_html | truncatewords: 26 }}{% else %}{{ site.name }} - {{ site.description }}{% endif %}" />
 
     <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1" />
 
     <link rel="shortcut icon" href="{{ site.baseurl }}/assets/images/favicon.ico" >
 
     <!-- [[! Styles'n'Scripts ]] -->
-    <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css"
-          href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-    <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/css/prism.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style amp-custom>
+        {% capture styles %}
+        {% include amp/css/amp.css %}
+        {% if page.cover %}
+        .main-header {
+            background-image: url("{{ site.url }}/{{ page.cover }}")
+        }
+        {% endif %}
+        .post-footer .author-image .img {
+            background-image: url("{{ site.url }}/{{ author.avatar }}")
+        }
+        {% endcapture %}
+        {{ styles | scssify }}
+    </style>
+    <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
+    <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+    {% if page.is_post %}
+    <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.1.js"></script>
+    {% endif %}
 
     <!-- [[! Ghost outputs important style and meta data with this tag ]] -->
     {% include head.html %}
@@ -42,21 +62,9 @@ layout: compress
           <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/biomadeira/jasper">Jasper</a></section>
         </footer>
     </div>
-    <!-- [[! Ghost outputs important scripts and data with this tag ]] -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <!-- [[! The main JavaScript file for Casper ]] -->
-    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/jquery.fitvids.js"></script>
-    <script type="text/javascript" src="{{ site.baseurl }}/assets/js/index.js"></script>
 
-    <link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css" integrity="sha384-dNpIIXE8U05kAbPhy3G1cz+yZmTzA6CY8Vg/u2L9xRnHjJiAK76m2BIEaSEV+/aU" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/fonts/fontcustom/fontcustom.css">
-
-    <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
-
-    <script src="{{ site.baseurl }}/assets/js/prism.js"></script>
     <!-- Add Google Analytics  -->
     {% include analytics.html %}
-    <!-- AddThis -->
-    {% include addthis.html %}
+
 </body>
 </html>

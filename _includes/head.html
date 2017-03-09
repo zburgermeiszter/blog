@@ -1,4 +1,5 @@
-    <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace: '//' , '' }}" />
+    <link rel="amphtml" href="{{ site.url }}{{ page.url | replace: '//' , '' }}" />
     <meta name="referrer" content="origin" />
 
     {% if paginator.previous_page %}

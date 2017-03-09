@@ -105,13 +105,14 @@ table { border-collapse: collapse; border-spacing: 0; }
    ========================================================================== */
 
 /* Import the font file with the icons in it */
+{% assign assetpath = "/assets" %}
 @font-face {
     font-family: "casper-icons";
-    src:url("../fonts/casper-icons.eot?v=1");
-    src:url("../fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
-    url("../fonts/casper-icons.woff?v=1") format("woff"),
-    url("../fonts/casper-icons.ttf?v=1") format("truetype"),
-    url("../fonts/casper-icons.svg?v=1#icons") format("svg");
+    src:url("{{ assetpath }}/fonts/casper-icons.eot?v=1");
+    src:url("{{ assetpath }}/fonts/casper-icons.eot?v=1#iefix") format("embedded-opentype"),
+    url("{{ assetpath }}/fonts/casper-icons.woff?v=1") format("woff"),
+    url("{{ assetpath }}/fonts/casper-icons.ttf?v=1") format("truetype"),
+    url("{{ assetpath }}/fonts/casper-icons.svg?v=1#icons") format("svg");
     font-weight: normal;
     font-style: normal;
 }
@@ -125,7 +126,7 @@ table { border-collapse: collapse; border-spacing: 0; }
     font-variant: normal;
     text-transform: none;
     line-height: 1;
-    text-decoration: none !important;
+    text-decoration: none;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -185,7 +186,7 @@ html {
 body {
     height: 100%;
     max-height: 100%;
-    font-family: "Merriweather", serif;
+    font-family: "Open Sans", sans-serif;
     letter-spacing: 0.01rem;
     font-size: 1.8rem;
     line-height: 1.75em;
@@ -485,7 +486,7 @@ margin on the iframe, cause it breaks stuff. */
     transition: transform 0.5s ease;
 }
 
-body.nav-opened .site-wrapper {
+#nav-open:checked ~ .site-wrapper {
     overflow-x: hidden;
     -webkit-transform: translate3D(-240px, 0, 0);
     -ms-transform: translate3D(-240px, 0, 0);
@@ -522,6 +523,7 @@ body.nav-opened .site-wrapper {
     position: relative;
     padding: 35px 40px;
     margin: 0 0 30px 0;
+    z-index: 11;
 }
 
 .main-nav a {
@@ -530,7 +532,7 @@ body.nav-opened .site-wrapper {
 }
 
 /* Navigation */
-body.nav-opened .nav-cover {
+#nav-open:checked ~ nav .nav-cover {
     position: fixed;
     top: 0;
     left: 0;
@@ -545,25 +547,24 @@ body.nav-opened .nav-cover {
     right: 0;
     bottom: 0;
     z-index: 5;
-    width: 240px;
+    width: 0;
     opacity: 0;
     background: #111;
     margin-bottom: 0;
     text-align: left;
     overflow-y: auto;
-    -webkit-transition: -webkit-transform 0.5s ease,
-    opacity 0.3s ease 0.7s;
-    transition: transform 0.5s ease,
-    opacity 0.3s ease 0.7s;
+    -webkit-transition: all 0.8s ease;
+    transition: all 0.8s ease;
 }
 
-body.nav-closed .nav {
+#nav-open:not(:checked) ~ nav .nav {
     -webkit-transform: translate3D(97px, 0, 0);
     -ms-transform: translate3D(97px, 0, 0);
     transform: translate3D(97px, 0, 0);
 }
 
-body.nav-opened .nav {
+#nav-open:checked ~ nav .nav {
+    width: 240px;
     opacity: 1;
     -webkit-transition: -webkit-transform 0.3s ease,
     opacity 0s ease 0s;
@@ -698,7 +699,7 @@ body.nav-opened .nav {
     right: 30px;
     height: 38px;
     padding: 0 20px;
-    color: #111 !important; /* Overides `.nav a:link, .nav a:visited` colour */
+    color: #111;
     text-align: center;
     font-size: 12px;
     font-family: "Open Sans", sans-serif;
@@ -770,8 +771,8 @@ body.nav-opened .nav {
 .blog-logo {
     display: block;
     float: left;
-    background: none !important; /* Makes sure there is never a background */
-    border: none !important; /* Makes sure there is never a border */
+    background: none; /* Makes sure there is never a background */
+    border: none; /* Makes sure there is never a border */
 }
 
 .blog-logo img {
@@ -802,12 +803,15 @@ body.nav-opened .nav {
     white-space: nowrap;
     border-radius: 3px;
     transition: all 0.5s ease;
+    cursor:pointer;
+    position: absolute;
+    right:0;
+    margin: 40px;
+    z-index: 12;
 }
 .menu-button:before {
     font-size: 12px;
     font-weight: bold;
-    margin-right: 6px;
-    position: relative;
     top: 1px;
 }
 .menu-button:hover {
@@ -817,27 +821,31 @@ body.nav-opened .nav {
     outline: 0;
 }
 
+#nav-open {
+    display: none;
+}
+
 /* When the navigation is closed */
-.nav-closed .menu-button {
+#nav-open:not(:checked) ~ .menu-button {
     color: #fff;
     border-color: rgba(255, 255, 255, 0.6);
 }
-.nav-closed .menu-button:hover {
+#nav-open:not(:checked) ~ .menu-button:hover {
     color: #222;
 }
 
 /* When the navigation is closed and there is no cover image */
-.nav-closed .no-cover .menu-button {
+.no-cover #nav-open:not(:checked) ~ .menu-button {
     border-color: #BFC8CD;
     color: #9EABB3;
 }
-.nav-closed .no-cover .menu-button:hover {
+.no-cover #nav-open:not(:checked) ~ .menu-button:hover {
     border-color: #555;
     color: #555;
 }
 
 /* When the navigation is opened */
-.nav-opened .menu-button {
+#nav-open:checked ~ .menu-button {
     padding: 0 12px;
     background: #111;
     border-color: #111;
@@ -846,12 +854,9 @@ body.nav-opened .nav {
     -ms-transform: translate3D(94px, 0, 0);
     transform: translate3D(94px, 0, 0);
     transition: all 0.3s ease;
+    right: 280px;
 }
 
-.nav-opened .menu-button .word {
-    opacity: 0;
-    transition: all 0.3s ease;
-}
 
 /* Special styles when overlaid on an image*/
 .main-nav.overlay {
@@ -882,7 +887,7 @@ body.nav-opened .nav {
     font-size: 2rem;
     line-height: 1.5em;
     font-weight: 400;
-    font-family: "Merriweather", serif;
+    font-family: "Open Sans", sans-serif;
     letter-spacing: 0.01rem;
     color: rgba(255,255,255,0.8);
 }
@@ -916,7 +921,7 @@ body.nav-opened .nav {
 }
 
 /* Every post, on every page, gets this style on its <article> tag */
-.post {
+article.post {
     position: relative;
     width: 80%;
     max-width: 710px;
@@ -1334,7 +1339,7 @@ body:not(.post-template) .post-title {
 /* Location, website, and link */
 .author-profile .author-meta {
     margin: 2rem 0;
-    font-family: "Merriweather", serif;
+    font-family: "Open Sans", sans-serif;
     letter-spacing: 0.01rem;
     font-size: 1.7rem;
 }
@@ -1345,6 +1350,10 @@ body:not(.post-template) .post-title {
 }
 .author-meta a {
     text-decoration: none;
+}
+
+.author-content .author-year {
+    text-align: center
 }
 
 /* Turn off meta for page2+ to make room for extra
@@ -1363,6 +1372,7 @@ body:not(.post-template) .post-title {
     position: relative;
     border-top: 1px solid #e5e4e1;
     border-bottom: 1px solid #e5e4e1;
+    width: 100%;
 }
 .post-nav:after {
     position: absolute;
@@ -1582,7 +1592,7 @@ body:not(.post-template) .post-title {
 .subscribe-form {
     padding-top: 1.5em;
     padding-bottom: 1.5em;
-    border-bottom: 1px solid #e5e4e1 !important;
+    border-bottom: 1px solid #e5e4e1;
 }
 
 .subscribe-form #mc_embed_signup {
@@ -1590,7 +1600,7 @@ body:not(.post-template) .post-title {
 }
 
 #mc_embed_signup label {
-    font-size: 1.5em !important;
+    font-size: 1.5em;
 }
 
 #mc_embed_signup div#mce-responses {
@@ -1911,13 +1921,14 @@ body:not(.post-template) .post-title {
         border-width: 0;
         color: #2e2e2e;
         background: transparent;
+        margin: 10px;
     }
     .menu-button:hover {
         color: #2e2e2e;
         border-color: transparent;
         background: none;
     }
-    body.nav-opened .menu-button {
+    #nav-open:checked ~ .menu-button {
         background: none;
         border: transparent;
     }
